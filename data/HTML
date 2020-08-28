@@ -1,0 +1,6 @@
+The contents of /etc/hosts should now be visibl
+e to you, provided you h
+ve permission to read the file in the first place.
+Let's now take a
+ look at an example of what happens when you try to read a
+ n invalid file - the easiest example is one that doesn't exist.
