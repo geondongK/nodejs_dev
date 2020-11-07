@@ -1,18 +1,38 @@
 {
   "name": "nodejs_dev",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "echo \"Start Test\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
   },
   "author": "geondong",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "sanitize-html": "^1.27.4"
+    "express-handlebars": "^5.1.0",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
+    "readline-sync": "^1.4.10",
+    "sanitize-html": "^1.27.5"
   },
   "devDependencies": {
     "typescript": "^4.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geondongK/nodejs_dev.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/geondongK/nodejs_dev/issues"
+  },
+  "homepage": "https://github.com/geondongK/nodejs_dev#readme",
+  "description": ""
 }
