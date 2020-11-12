@@ -1,5 +1,10 @@
+/*전체 설정*/
+* {
+  margin: 0;
+  padding: 0;
+}
 nav {
-  background-color: #563d7c;
+  background-color: gray;
   color: #fff;
   padding: 30px 60px;
   display: flex;
@@ -32,4 +37,67 @@ nav li a:hover {
 .avater-ctn {
   width: 65%;
   border-bottom: 1px solid rega(0, 0, 0, 0.125);
+}
+/*줄칸 조절*/
+table {
+  border-collapse: collapse;
+}
+/*캡션 안보이기*/
+caption {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/*테이블 감싸는 부분 설정*/
+.board_list_wrap {
+  padding: 50px;
+}
+/*테이블 설정*/
+.board_list {
+  width: 100%;
+  border-top: 2px solid navy;
+}
+/*줄 바닥글 지정*/
+.board_list tr {
+  border-bottom: 1px solid #ccc;
+}
+/*th td 둘다 설정 방법*/
+.board_list th,
+.board_list td {
+  padding: 10px;
+  font-size: 14px;
+  /* border: 1px solid #999; */
+}
+/*board td 설정*/
+.board_list td {
+  text-align: center;
+}
+/*board 제목 부분 설정*/
+.board_list .tit {
+  text-align: left;
+}
+/*마우스 올렸을때 링크 지정하는 방법*/
+.board_list .tit:hover {
+  text-decoration: underline;
+}
+/*paging 크기조절*/
+.board_list_wrap .paging {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0;
+}
+/*a 태그 세부설정*/
+.board_list_wrap .paging a {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px 10px;
+  /* border: 1px solid #ccc; */
+  border-radius: 100px;
+  font-size: 12px;
+}
+.board_list_wrap .paging a:first-child {
+  margin-left: 0;
 }

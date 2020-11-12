@@ -4,6 +4,7 @@ const path = require('path');
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 const hbs = require('express-handlebars');
+// const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
 
 dotenv.config({ path: './.env' });
@@ -37,8 +38,10 @@ db.connect((err) => {
 //         partialsDir: __dirname + "/view/partials"
 //     })
 // );
+app.engine("handlebars", hbs());
+app.set('view engine', 'hbs');
+// app.set('view engine', 'ejs');
 
-//CSS or JavaScript 프런트 엔트 자료 추가 
 const publicDirectory = path.join(__dirname, './public');
 console.log(__dirname);
 
@@ -46,14 +49,12 @@ app.use(express.static(publicDirectory));
 
 //클라이언트 오는 형식이 json 일수도있다
 app.use(express.json());
-app.use(cookieParser());
 //json 형식이 아닌 post 올때 urlencoded 사용
 app.use(express.urlencoded({ extended: false }));
-
-app.engine("handlebars", hbs());
-app.set('view engine', 'hbs');
+app.use(cookieParser());
 
 
+//CSS or JavaScript 프런트 엔트 자료 추가 
 
 //define Routes
 app.use('/', require('./routes/pages'));
