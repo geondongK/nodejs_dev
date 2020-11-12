@@ -61,5 +61,5 @@ app.use('/', require('./routes/pages'));
 //로그인 로그아웃
 app.use('/auth', require('./routes/auth'));
 
-const port = 3000
+const port = process.env.PORT || 3306;
 app.listen(port, () => console.log(`app listening on port ${port}!`))
