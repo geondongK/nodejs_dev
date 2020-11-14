@@ -19,14 +19,6 @@ const db = mysql.createConnection({
     port: 3306
 });
 
-db.connect((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Database is connected!');
-    }
-})
-
 // app.engine(
 //     "hbs",
 //     hbs({
@@ -42,6 +34,7 @@ app.engine("handlebars", hbs());
 app.set('view engine', 'hbs');
 // app.set('view engine', 'ejs');
 
+//CSS or JavaScript 프런트 엔트 자료 추가 
 const publicDirectory = path.join(__dirname, './public');
 console.log(__dirname);
 
@@ -54,12 +47,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-//CSS or JavaScript 프런트 엔트 자료 추가 
 
-//define Routes
+
+//경로 정의
 app.use('/', require('./routes/pages'));
 //로그인 로그아웃
 app.use('/auth', require('./routes/auth'));
 
-const port = process.env.PORT || 3306;
+
+db.connect((err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Database is connected!');
+    }
+})
+
+const port = process.env.port || 3300;
 app.listen(port, () => console.log(`app listening on port ${port}!`))
