@@ -4,10 +4,10 @@ const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 
 const db = mysql.createConnection({
-    host: process.env.Database_Host,
-    user: process.env.Database_User,
-    password: process.env.Database_Password,
-    database: process.env.Database,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB,
     port: 3306
 });
 exports.login = async (req, res) => {

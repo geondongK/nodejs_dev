@@ -4,21 +4,36 @@ const path = require('path');
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 const hbs = require('express-handlebars');
-// const ejs = require('ejs');
 const cookieParser = require('cookie-parser');
+// const ejs = require('ejs');
 
+//DB 정보 보호
 dotenv.config({ path: './.env' });
 
 const app = express()
 
 const db = mysql.createConnection({
-    host: process.env.Database_Host,
-    user: process.env.Database_User,
-    password: process.env.Database_Password,
-    database: process.env.Database,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB,
     port: 3306
 });
 
+db.connect((err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Database is connected!');
+    }
+})
+
+//CSS or JavaScript 자료 추가 
+app.use(express.static(path.join(__dirname, './public')));
+
+app.engine("handlebars", hbs());
+app.set('view engine', 'hbs');
+// app.set('view engine', 'ejs');
 // app.engine(
 //     "hbs",
 //     hbs({
@@ -30,15 +45,6 @@ const db = mysql.createConnection({
 //         partialsDir: __dirname + "/view/partials"
 //     })
 // );
-app.engine("handlebars", hbs());
-app.set('view engine', 'hbs');
-// app.set('view engine', 'ejs');
-
-//CSS or JavaScript 프런트 엔트 자료 추가 
-const publicDirectory = path.join(__dirname, './public');
-console.log(__dirname);
-
-app.use(express.static(publicDirectory));
 
 //클라이언트 오는 형식이 json 일수도있다
 app.use(express.json());
@@ -46,22 +52,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
-
-
 //경로 정의
 app.use('/', require('./routes/pages'));
 //로그인 로그아웃
 app.use('/auth', require('./routes/auth'));
-
-
-db.connect((err) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Database is connected!');
-    }
-})
 
 const port = process.env.port || 3300;
 app.listen(port, () => console.log(`app listening on port ${port}!`))
