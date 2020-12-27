@@ -6,10 +6,28 @@ const dotenv = require('dotenv');
 const hbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 
+
+
 //DB 정보 보호
 dotenv.config({ path: './.env' });
 
 const app = express()
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB,
+    port: 3306
+});
+
+db.connect((err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('Database is connected!');
+    }
+})
 
 //CSS or JavaScript 자료 추가 
 app.use(express.static(path.join(__dirname, './public')));
