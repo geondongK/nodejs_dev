@@ -6,8 +6,6 @@ const dotenv = require('dotenv');
 const hbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 
-
-
 //DB 정보 보호
 dotenv.config({ path: './.env' });
 

@@ -25,11 +25,11 @@ exports.login = async (req, res) => {
         db.query('SELECT * FROM users WHERE email = ?', [email], async (error, results) => {
             if (results.length == 0) {
                 return res.status(401).render('login', {
-                    message: '유요한 이메일 또는 비밀번호를 입력하세요.'
+                    message: '유효한 이메일 또는 비밀번호를 입력하세요.'
                 });
             } else if (!(await bcrypt.compare(password, results[0].password))) {
                 return res.status(401).render('login', {
-                    message: '유요한 이메일 또는 비밀번호를 입력하세요.'
+                    message: '유효한 이메일 또는 비밀번호를 입력하세요.'
                 });
             }
             const id = results[0].id;
