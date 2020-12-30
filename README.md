@@ -16,5 +16,5 @@
 
 서버
 
-- aws ec2 utuntu(20.04.1 LTS) putty사용
+- AWS EC2 Ubuntu(20.04.1 LTS) PuTTY사용
 - http://3.34.213.25:5502/
