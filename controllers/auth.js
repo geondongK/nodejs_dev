@@ -30,15 +30,15 @@ exports.login = async (req, res) => {
                     message: '유효한 이메일 또는 비밀번호를 입력하세요.'
                 });
             }
-            const id = results[0].id; //db아이디 가져오기
-            const maxAge = 3 * 24 * 60 * 60; //3일로 지정
-            //jwt를 이용해 토큰 생성
+            const id = results[0].id; //db아이디 가져오기.
+            const maxAge = 3 * 24 * 60 * 60; //3일로 지정.
+            //jwt를 이용해 토큰 생성.
             const token = jwt.sign({ id }, 'jwtsecret', {
                 expiresIn: maxAge
             });
             console.log('The token is: ' + token);
-            //쿠키에 토큰을 저장하기
-            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 }); //3일 지정
+            //쿠키에 토큰을 저장하기.
+            res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 }); //3일 지정.
             res.status(200).redirect('/');
         })
     } catch (error) {
@@ -89,7 +89,7 @@ exports.isLoggedIn = async (req, res, next) => {
             //token이 인코드에서 디코드으로변환 시켜 id값 나오게 하기
             //token을 디코드하기 위해 verify를 사용
             const decoded = await util.promisify(jwt.verify)(req.cookies.jwt, 'jwtsecret');
-            //util.promisify 함수를 사용하여 프로미스 코드를 사용하지 않고 프로미스로 만는 방법.
+            //util.promisify 함수를 사용하여 프로미스 코드를 사용하지 않고 프로미스로 만드는 방법.
             console.log(decoded);
             //클라이언트 token과 db에 보관된 토큰이 일치하는지 확인.
             db.query('SELECT * FROM users WHERE id = ?', [decoded.id], (error, result) => {
