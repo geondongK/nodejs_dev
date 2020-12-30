@@ -1,4 +1,3 @@
-// const { static } = require('express');
 const express = require('express');
 const mysql = require('mysql');
 const path = require('path');
@@ -29,18 +28,20 @@ db.connect((err) => {
 
 //CSS or JavaScript 자료 추가 
 app.use(express.static(path.join(__dirname, './public')));
-//json 형식이 아닌 post 올때 urlencoded 사용
+// express 4버전 이상부터 body-parser 기능이 내장되어있다.
+//URL-encoded 주소 형식으로 데이터를 보내는 방식
 app.use(express.urlencoded({ extended: false }));
-//클라이언트 오는 형식이 json 일수도있다
+//JSON 형식으로 데이터 전달방식
 app.use(express.json());
+// cookieParser 미들웨어
 app.use(cookieParser());
 
+//템플릿 엔진 hbs 사용
 app.engine("handlebars", hbs());
 app.set('view engine', 'hbs');
 
 //routes를 통해 미들웨어 경로를 사용 
 app.use('/', require('./routes/pages'));
-
 app.use('/auth', require('./routes/auth'));
 
 const port = process.env.port || 5502;

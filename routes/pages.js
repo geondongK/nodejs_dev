@@ -2,6 +2,7 @@ const express = require('express');
 const authController = require('../controllers/auth');
 const router = express.Router();
 
+//인증 미들웨어 정보를 가진다.
 router.get('/', authController.isLoggedIn, (req, res) => {
     res.render('index', {
         user: req.user
