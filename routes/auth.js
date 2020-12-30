@@ -3,7 +3,7 @@ const authController = require('../controllers/auth');
 
 const router = express.Router();
 
-//authController module 호출
+//authController module 호출하기.
 router.post('/register', authController.register);
 
 router.post('/login', authController.login);
